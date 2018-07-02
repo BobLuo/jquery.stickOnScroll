@@ -83,7 +83,11 @@
 
                     // Get the scroll top position on the view port
                     scrollTop   = o.viewport.scrollTop();
-
+                    
+                    // Recalculate the top position of the element
+                    // Fix bug: when document dom are dynamic load, top position of the element are incorrent. it need to be recalculate
+                    o.setEleTop();
+                    
                     // set the maxTop before we stick the element
                     // to be it's "normal" topPosition minus offset
                     maxTop      = o.getEleMaxTop();
@@ -374,7 +378,7 @@
 
                     } else {
 
-                        o.eleTop = ( o.ele.offset().top - o.viewport.offset().top );
+                        o.eleTop = ( o.ele.offset().top - o.viewport.offset().top + o.viewport.scrollTop() );
 
                     }
 
